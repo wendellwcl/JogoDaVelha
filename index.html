@@ -11,9 +11,12 @@
 
     <h1>Jogo da Velha</h1>
 
-    <div id="game-type">
-        <button type="button">2 Jogadores</button>
-        <button type="button">Contra AI</button>
+    <div id="container-gametype">
+        <span>Selecione o modo de jogo</span>
+        <div id="gametype">
+            <button type="button">2 Jogadores</button>
+            <button type="button">Contra AI</button>
+        </div>
     </div>
 
     <div id="game">
@@ -26,11 +29,19 @@
         <div class="box" id="box-7"></div>
         <div class="box" id="box-8"></div>
         <div class="box" id="box-9"></div>
+
+        <div id="msg">
+            <span>votoria do jogador</span>
+        </div>
     </div>
 
     <div id="scoreboard">
-        <span>Jogador 1 : <span id="score-player1">0</span></span>
-        <span>Jogador 2 : <span id="score-player2">0</span></span>
+        <span>Placar</span>
+        <div id="players-scores">
+            <span>X : <span id="score-player1">0</span></span>
+            <span id="separator">|</span>
+            <span>O : <span id="score-player2">0</span></span>
+        </div>
         <button type="button">zerar placar</button>
     </div>
 
