@@ -32,11 +32,11 @@ function play(){
 
     //checando round
     if((roundControl % 2) !== 0){
-        this.style.backgroundColor = 'red';
+        this.style.backgroundImage = 'url("img/X.png")';
         //atualizar array movesOfPlayer1
         movesOfPlayer1.push(i);
     } else {
-        this.style.backgroundColor = 'blue';
+        this.style.backgroundImage = 'url("img/O.png")';
         //atualizar array movesOfPlayer2
         movesOfPlayer2.push(i);
     };
@@ -138,7 +138,7 @@ function resetRound(){
 
     //reset
     boxes.forEach(el => {
-        el.style.backgroundColor = null;
+        el.style.backgroundImage = null;
     });
 
     //reset controladores

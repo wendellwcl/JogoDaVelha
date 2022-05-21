@@ -20,6 +20,18 @@ html, body{
     flex-direction: column;
     align-items: center;
     background: linear-gradient(-45deg, var(--cor3), var(--cor4));
+    position: relative;
+    z-index: -100;
+}
+
+body::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url(img/textura-bg.png);
+    mix-blend-mode: soft-light;
+    opacity: .2;
+    z-index: -50;
 }
 
 h1{
@@ -76,6 +88,9 @@ button{
     border: 5px solid var(--cor2);
     flex: 1 1 100px;
     background-color: var(--cor1);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #box-1, #box-2, #box-3{
