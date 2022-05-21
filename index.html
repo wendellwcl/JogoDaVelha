@@ -15,8 +15,8 @@
     <div id="container-gametype">
         <span>Selecione o modo de jogo</span>
         <div id="gametype">
+            <button type="button">1 Jogador</button>
             <button type="button">2 Jogadores</button>
-            <button type="button">Contra AI</button>
         </div>
     </div>
 
@@ -37,11 +37,16 @@
     </div>
 
     <div id="scoreboard">
-        <span>Placar</span>
         <div id="players-scores">
-            <span>X : <span id="score-player1">0</span></span>
-            <span id="separator">|</span>
-            <span>O : <span id="score-player2">0</span></span>
+            <div>
+                <img src="img/X.png" alt="pontos do jogador 1">
+                <span id="score-player1">0</span>
+            </div>
+            <div id="separator">vs</div>
+            <div>
+                <img src="img/O.png" alt="pontos do josgador 2">
+                <span id="score-player2">0</span>
+            </div>
         </div>
         <button type="button" onclick="resetScoreboard()">zerar placar</button>
     </div>

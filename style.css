@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
 :root{
     --cor1: #FEDFC2;
     --cor2: #3A76FB;
     --cor3: #FF7801;
     --cor4: #FF3880;
     --cor5: #F4F4F4;
+    --cor6: #1C1F26;
 }
 
 *{
@@ -35,37 +38,42 @@ body::before{
 }
 
 h1{
-    font-size: 42px;
-    padding: 30px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 45px;
+    padding: 15px;
+    margin-bottom: 10px;
+    color: var(--cor5);
+    text-shadow: 0px 3px var(--cor2), 0px 6px var(--cor6);
 }
 
 button{
-    background-color: var(--cor5);
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--cor5);
+    background-color: var(--cor2);
     border: none;
     border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
 }
 
 /*Select Gametype*/
 #container-gametype{
+    width: 270px;
     text-align: center;
-}
-
-#gametype{
-    margin-top: 5px;
-}
-
-button{
-    margin: 5px 15px;
-    padding: 5px 10px;
+    background-color: var(--cor1);
+    border-radius: 10px;
+    padding: 10px 0;
 }
 
 /*Game*/
 #game{
-    width: 300px;
+    width: 270px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 30px auto;
+    margin: 20px auto;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
@@ -84,9 +92,9 @@ button{
 }
 
 .box{
-    height: 100px;
+    height: 90px;
     border: 5px solid var(--cor2);
-    flex: 1 1 100px;
+    flex: 1 1 90px;
     background-color: var(--cor1);
     background-position: center;
     background-repeat: no-repeat;
@@ -115,15 +123,42 @@ button{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--cor1);
+    border-radius: 10px;
+    padding: 10px 15px;
 }
 
 #players-scores{
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 5px 0;
+    background-color: var(--cor5);
+    border-radius: 5px;
+}
+
+#players-scores div{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+#players-scores img{
+    display: block;
+    height: 75%;
+    margin-right: 5px;
+}
+
+#players-scores span{
+    font-size: 30px;
 }
 
 #separator{
-    margin: 0 15px;
+    font-family: 'Permanent Marker', cursive;
+    background-color: var(--cor2);
+    color: var(--cor5);
+    font-size: 25px;
+    padding: 10px;
 }
