@@ -3,7 +3,8 @@ let boxes = document.querySelectorAll('.box');
 let scoreboardPlayer1 = document.querySelector('#score-player1');
 let scoreboardPlayer2 = document.querySelector('#score-player2');
 
-/*Controladores*/
+//player artificial
+let artificialPlayer = true;
 
 //round
 let roundControl = 1;
@@ -23,6 +24,17 @@ function setEvents(){
     });
 };
 setEvents();
+
+//alterar numero de jogadores
+function numberOfPlayers(num){
+    if(num === 1){
+        artificialPlayer = true;
+        resetRound();
+    } else {
+        artificialPlayer = false;
+        resetRound();
+    };
+};
 
 //jogo
 function play(){
@@ -50,6 +62,35 @@ function play(){
     //checar vitoria
     checkWin();
 
+    //jogada do player artificial
+    if(artificialPlayer && (roundControl % 2) === 0){
+        setTimeout(() => {
+            artificialPlayerMove();
+        }, 200);
+    };
+};
+
+//jogada do artificial player
+function artificialPlayerMove(){
+    //sorteando numero
+    let x = Math.round((Math.random())*9);
+    while(movesOfPlayer1.includes(x) || movesOfPlayer2.includes(x) || x === 0){
+        x = Math.round((Math.random())*9);
+    };
+
+    //realizando jogada
+    let el = document.getElementById(`box-${x}`);
+    el.style.backgroundImage = 'url(img/O.png)';
+    movesOfPlayer2.push(x);
+
+    //remover função do elemento selecionado
+    el.removeEventListener('click', play);
+
+    //atualizar round
+    roundControl++;
+
+    //checar vitoria
+    checkWin();
 };
 
 //condições de vitoria
