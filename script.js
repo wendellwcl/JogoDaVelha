@@ -1,5 +1,8 @@
 //selecionando elementos
 let boxes = document.querySelectorAll('.box');
+let msg = document.querySelector('#msg');
+let imgMsg = document.querySelector('#msgImg');
+let msgText = document.querySelector('#msgText');
 let scoreboardPlayer1 = document.querySelector('#score-player1');
 let scoreboardPlayer2 = document.querySelector('#score-player2');
 
@@ -8,6 +11,7 @@ let artificialPlayer = true;
 
 //round
 let roundControl = 1;
+let winner = false;
 
 //jogadas feitas por cada jogador
 let movesOfPlayer1 = [];
@@ -43,12 +47,12 @@ function play(){
     let i = parseInt(this.id.slice(-1));
 
     //checando round
-    if((roundControl % 2) !== 0){
+    if((roundControl % 2) !== 0 && !winner){
         //feedback visual da jogada
         this.style.backgroundImage = 'url("img/X.png")';
         //atualizar array movesOfPlayer1
         movesOfPlayer1.push(i);
-    } else {
+    } else if((roundControl % 2) === 0 && !winner){
         //feedback visual da jogada
         this.style.backgroundImage = 'url("img/O.png")';
         //atualizar array movesOfPlayer2
@@ -65,7 +69,7 @@ function play(){
     checkWin();
 
     //jogada do player artificial
-    if(artificialPlayer && (roundControl % 2) === 0){
+    if(artificialPlayer && !winner){
         setTimeout(() => {
             artificialPlayerMove();
         }, 200);
@@ -103,96 +107,140 @@ function checkWin(){
     //horizontais
     if(movesOfPlayer1.includes(1) && movesOfPlayer1.includes(2) && movesOfPlayer1.includes(3)){
         scorePlayer1++;
-        resetRound();
+        resetRound('X');
     } else if(movesOfPlayer2.includes(1) && movesOfPlayer2.includes(2) && movesOfPlayer2.includes(3)){
         scorePlayer2++;
-        resetRound();
+        resetRound('O');
     };
 
     if(movesOfPlayer1.includes(4) && movesOfPlayer1.includes(5) && movesOfPlayer1.includes(6)){
         scorePlayer1++;
-        resetRound();
+        resetRound('X');
     } else if(movesOfPlayer2.includes(4) && movesOfPlayer2.includes(5) && movesOfPlayer2.includes(6)){
         scorePlayer2++;
-        resetRound();
+        resetRound('O');
     };
 
     if(movesOfPlayer1.includes(7) && movesOfPlayer1.includes(8) && movesOfPlayer1.includes(9)){
         scorePlayer1++;
-        resetRound();
+        resetRound('X');
     } else if(movesOfPlayer2.includes(7) && movesOfPlayer2.includes(8) && movesOfPlayer2.includes(9)){
         scorePlayer2++;
-        resetRound();
+        resetRound('O');
     };
 
     //verticais
     if(movesOfPlayer1.includes(1) && movesOfPlayer1.includes(4) && movesOfPlayer1.includes(7)){
         scorePlayer1++;
-        resetRound();
+        resetRound('X');
     } else if(movesOfPlayer2.includes(1) && movesOfPlayer2.includes(4) && movesOfPlayer2.includes(7)){
         scorePlayer2++;
-        resetRound();
+        resetRound('O');
     };
 
     if(movesOfPlayer1.includes(2) && movesOfPlayer1.includes(5) && movesOfPlayer1.includes(8)){
         scorePlayer1++;
-        resetRound();
+        resetRound('X');
     } else if(movesOfPlayer2.includes(2) && movesOfPlayer2.includes(5) && movesOfPlayer2.includes(8)){
         scorePlayer2++;
-        resetRound();
+        resetRound('O');
     };
 
     if(movesOfPlayer1.includes(3) && movesOfPlayer1.includes(6) && movesOfPlayer1.includes(9)){
         scorePlayer1++;
-        resetRound();
+        resetRound('X');
     } else if(movesOfPlayer2.includes(3) && movesOfPlayer2.includes(6) && movesOfPlayer2.includes(9)){
         scorePlayer2++;
-        resetRound();
+        resetRound('O');
     };
 
     //diagonais
     if(movesOfPlayer1.includes(1) && movesOfPlayer1.includes(5) && movesOfPlayer1.includes(9)){
         scorePlayer1++;
-        resetRound();
+        resetRound('X');
     } else if(movesOfPlayer2.includes(1) && movesOfPlayer2.includes(5) && movesOfPlayer2.includes(9)){
         scorePlayer2++;
-        resetRound();
+        resetRound('O');
     };
 
     if(movesOfPlayer1.includes(3) && movesOfPlayer1.includes(5) && movesOfPlayer1.includes(7)){
         scorePlayer1++;
-        resetRound();
+        resetRound('X');
     } else if(movesOfPlayer2.includes(3) && movesOfPlayer2.includes(5) && movesOfPlayer2.includes(7)){
         scorePlayer2++;
-        resetRound();
+        resetRound('O');
     };
     
     //velha
     if((movesOfPlayer1.length + movesOfPlayer2.length) === 9){
-        resetRound();
+        resetRound('Ninguém');
     };
 
 };
 
 //reset rodada
-function resetRound(){
+function resetRound(p){
 
-    //atualizar placar
-    scoreboardPlayer1.innerHTML = scorePlayer1;
-    scoreboardPlayer2.innerHTML = scorePlayer2;
+    if(p){
+        winner = true;
 
-    //reset
-    boxes.forEach(el => {
-        el.style.backgroundImage = null;
-    });
+        if(p == 'X'){
+            msgImg.setAttribute('src', 'img/X.png');
+            msgText.innerHTML = `venceu a rodada`
+        } else if(p == 'O'){
+            msgImg.setAttribute('src', 'img/O.png');
+            msgText.innerHTML = `venceu a rodada`
+        } else {
+            msgImg.setAttribute('src', '');
+            msgText.innerHTML = `${p} venceu a rodada`
+        }
+        msg.style.display = 'block';
 
-    //reset controladores
-    movesOfPlayer1 = [];
-    movesOfPlayer2 = [];
-    roundControl = 1;
+        setTimeout(() => {
 
-    //reset eventos - adicionar eventos novamente
-    setEvents();
+            //atualizar placar
+            scoreboardPlayer1.innerHTML = scorePlayer1;
+            scoreboardPlayer2.innerHTML = scorePlayer2;
+    
+            //reset
+            boxes.forEach(el => {
+                el.style.backgroundImage = null;
+            });
+    
+            //reset controladores
+            movesOfPlayer1 = [];
+            movesOfPlayer2 = [];
+            roundControl = 1;
+    
+            //reset eventos - adicionar eventos novamente
+            setEvents();
+    
+            winner = false;
+    
+            msg.style.display = 'none';
+    
+        }, 1000);
+
+    } else {
+
+        //atualizar placar
+        scoreboardPlayer1.innerHTML = scorePlayer1;
+        scoreboardPlayer2.innerHTML = scorePlayer2;
+
+        //reset
+        boxes.forEach(el => {
+            el.style.backgroundImage = null;
+        });
+
+        //reset controladores
+        movesOfPlayer1 = [];
+        movesOfPlayer2 = [];
+        roundControl = 1;
+
+        //reset eventos - adicionar eventos novamente
+        setEvents();
+    };
+
 };
 
 //reset placar
