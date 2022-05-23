@@ -44,10 +44,12 @@ function play(){
 
     //checando round
     if((roundControl % 2) !== 0){
+        //feedback visual da jogada
         this.style.backgroundImage = 'url("img/X.png")';
         //atualizar array movesOfPlayer1
         movesOfPlayer1.push(i);
     } else {
+        //feedback visual da jogada
         this.style.backgroundImage = 'url("img/O.png")';
         //atualizar array movesOfPlayer2
         movesOfPlayer2.push(i);
@@ -78,9 +80,11 @@ function artificialPlayerMove(){
         x = Math.round((Math.random())*9);
     };
 
-    //realizando jogada
+    //feedback visual da jogada
     let el = document.getElementById(`box-${x}`);
     el.style.backgroundImage = 'url(img/O.png)';
+
+    //atualizar array movesOfPlayer2
     movesOfPlayer2.push(x);
 
     //remover função do elemento selecionado
