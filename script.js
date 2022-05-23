@@ -1,4 +1,6 @@
 //selecionando elementos
+let btn1 = document.querySelector('#btn1');
+let btn2 = document.querySelector('#btn2');
 let boxes = document.querySelectorAll('.box');
 let msg = document.querySelector('#msg');
 let imgMsg = document.querySelector('#msgImg');
@@ -29,6 +31,22 @@ function setEvents(){
 };
 setEvents();
 
+//feedback visual gametype atual
+function feedbackGametype(b){
+    if(b){
+        btn2.style.backgroundColor = 'transparent';
+        btn2.style.color = '#3A76FB';
+        btn1.style.backgroundColor = '#3A76FB';
+        btn1.style.color = '#F4F4F4';
+    } else {
+        btn1.style.backgroundColor = 'transparent';
+        btn1.style.color = '#3A76FB';
+        btn2.style.backgroundColor = '#3A76FB';
+        btn2.style.color = '#F4F4F4';
+    }
+}
+feedbackGametype(artificialPlayer);
+
 //alterar numero de jogadores
 function numberOfPlayers(num){
     if(num === 1){
@@ -38,6 +56,7 @@ function numberOfPlayers(num){
         artificialPlayer = false;
         resetRound();
     };
+    feedbackGametype(artificialPlayer);
 };
 
 //jogo
@@ -172,7 +191,7 @@ function checkWin(){
     };
     
     //velha
-    if((movesOfPlayer1.length + movesOfPlayer2.length) === 9){
+    if((movesOfPlayer1.length + movesOfPlayer2.length) === 9 && !winner){
         resetRound('Ninguém');
     };
 

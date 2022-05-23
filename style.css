@@ -49,8 +49,8 @@ h1{
 button{
     font-size: 14px;
     font-weight: bold;
-    color: var(--cor5);
-    background-color: var(--cor2);
+    color: var(--cor2);
+    background-color: transparent;
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
@@ -192,4 +192,9 @@ button{
     color: var(--cor5);
     font-size: 25px;
     padding: 10px;
+}
+
+#scoreboard button{
+    color: var(--cor5);
+    background-color: var(--cor2);
 }
